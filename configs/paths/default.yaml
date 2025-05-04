@@ -1,0 +1,18 @@
+# ルートディレクトリへのパス
+# これにはPROJECT_ROOT環境変数が存在する必要があります
+# ルートを現在の作業ディレクトリにしたい場合は"."に置き換えることができます
+root_dir: ${oc.env:PROJECT_ROOT}
+
+# データディレクトリへのパス
+data_dir: ${paths.root_dir}/data/
+
+# ログディレクトリへのパス
+log_dir: ${paths.root_dir}/logs/
+
+# 出力ディレクトリへのパス、hydraによって動的に作成されます
+# パス生成パターンは`configs/hydra/default.yaml`で指定されています
+# 実行中に生成されたすべてのファイル（チェックポイントやメトリクスなど）を保存するために使用します
+output_dir: ${hydra:runtime.output_dir}
+
+# 作業ディレクトリへのパス
+work_dir: ${hydra:runtime.cwd}

@@ -1,0 +1,19 @@
+_target_: lightning.pytorch.trainer.Trainer
+
+default_root_dir: ${paths.output_dir}
+
+min_epochs: 1 # 早期停止を防止
+max_epochs: 10
+
+accelerator: cpu
+devices: 1
+
+# 追加の高速化のための混合精度
+# precision: 16
+
+# N回のトレーニングエポックごとに検証ループを実行
+check_val_every_n_epoch: 1
+
+# 決定論的な結果を確保するにはTrueに設定
+# シードを設定するだけよりも再現性が高いが、トレーニングは遅くなります
+deterministic: False

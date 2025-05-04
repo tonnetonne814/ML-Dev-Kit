@@ -1,0 +1,12 @@
+# https://mlflow.org
+
+mlflow:
+  _target_: lightning.pytorch.loggers.mlflow.MLFlowLogger
+  # experiment_name: ""
+  # run_name: ""
+  tracking_uri: ${paths.log_dir}/mlflow/mlruns # UIを開くには`logs/mlflow/`ディレクトリ内で`mlflow ui`コマンドを実行してください
+  tags: null
+  # save_dir: "./mlruns"
+  prefix: ""
+  artifact_location: null
+  # run_id: ""

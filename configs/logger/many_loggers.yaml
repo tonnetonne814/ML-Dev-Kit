@@ -1,0 +1,9 @@
+# 複数のロガーを同時に使用してトレーニング
+
+defaults:
+  # - comet
+  - csv
+  # - mlflow
+  # - neptune
+  - tensorboard
+  - wandb

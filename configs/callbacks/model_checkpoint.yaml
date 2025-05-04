@@ -1,0 +1,17 @@
+# https://lightning.ai/docs/pytorch/stable/api/lightning.pytorch.callbacks.ModelCheckpoint.html
+
+model_checkpoint:
+  _target_: lightning.pytorch.callbacks.ModelCheckpoint
+  dirpath: null # モデルファイルを保存するディレクトリ
+  filename: null # チェックポイントのファイル名
+  monitor: null # モデルが改善しているかを判断するためにログに記録されるメトリックの名前
+  verbose: False # 詳細モード
+  save_last: null # 加えて、常に最後のチェックポイントの正確なコピーをlast.ckptファイルに保存
+  save_top_k: 1 # k個の最良モデルを保存（上記のメトリックによって決定）
+  mode: "min" # "max"はより高いメトリック値が良いことを意味し、"min"も可能
+  auto_insert_metric_name: True # Trueの場合、チェックポイントのファイル名にメトリック名が含まれる
+  save_weights_only: False # Trueの場合、モデルの重みのみが保存される
+  every_n_train_steps: null # チェックポイント間のトレーニングステップ数
+  train_time_interval: null # チェックポイントは指定された時間間隔で監視される
+  every_n_epochs: null # チェックポイント間のエポック数
+  save_on_train_epoch_end: null # トレーニングエポックの終了時または検証の終了時にチェックポイントを実行するかどうか

@@ -1,0 +1,16 @@
+# https://wandb.ai
+
+wandb:
+  _target_: lightning.pytorch.loggers.wandb.WandbLogger
+  # name: "" # 実行の名前（通常はwandbによって生成されます）
+  save_dir: "${paths.output_dir}"
+  offline: False
+  id: null # 実験を再開するには正しいIDを入力してください！
+  anonymous: null # 匿名ログを有効にする
+  project: "lightning-hydra-template"
+  log_model: False # lightningのチェックポイントをアップロード
+  prefix: "" # メトリックキーの先頭に付ける文字列
+  # entity: "" # wandbチームの名前を設定
+  group: ""
+  tags: []
+  job_type: ""

@@ -1,0 +1,49 @@
+# @package _global_
+
+# デフォルト設定をここで指定
+# defaultsの順序によって、設定が互いに上書きされる順序が決まります
+defaults:
+  - _self_
+  - data: mnist
+  - model: mnist
+  - callbacks: default
+  - logger: tensorboard # ロガーをここで設定するか、コマンドラインで設定します（例：`python train.py logger=tensorboard`）
+  - trainer: gpu # gpu
+  - paths: default
+  - extras: default
+  - hydra: default
+
+  # 実験設定は特定のハイパーパラメータのバージョン管理を可能にします
+  # 例：特定のモデルとデータモジュールに対する最適なハイパーパラメータ
+  - experiment: null
+
+  # ハイパーパラメータ最適化の設定
+  - hparams_search: null
+
+  # マシン/ユーザー固有の設定のためのオプションのローカル設定
+  # 存在する必要がなくバージョン管理から除外されるため、オプションです
+  - optional local: default
+
+  # デバッグ設定（コマンドラインで有効化、例：`python train.py debug=default`）
+  - debug: null
+
+# タスク名、出力ディレクトリパスを決定します
+task_name: "train"
+
+# 実験を識別するのに役立つタグ
+# 実験設定で上書きすることができます
+# コマンドラインから`python train.py tags="[first_tag, second_tag]"`で上書き
+tags: ["dev"]
+
+# Falseに設定するとモデルのトレーニングをスキップします
+train: True
+
+# トレーニング中に達成した最良のモデル重みを使用して、テストセットで評価します
+# lightningはチェックポイントコールバックで指定されたメトリックに基づいて最良の重みを選びます
+test: True
+
+# トレーニングを再開するためにチェックポイントパスを提供するだけです
+ckpt_path: null
+
+# pytorch、numpy、python.randomの乱数ジェネレータのためのシード
+seed: null

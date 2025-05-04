@@ -1,0 +1,9 @@
+# https://neptune.ai
+
+neptune:
+  _target_: lightning.pytorch.loggers.neptune.NeptuneLogger
+  api_key: ${oc.env:NEPTUNE_API_TOKEN} # APIキーは環境変数から読み込まれます
+  project: username/lightning-hydra-template
+  # name: ""
+  log_model_checkpoints: True
+  prefix: ""

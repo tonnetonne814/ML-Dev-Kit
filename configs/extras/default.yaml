@@ -1,0 +1,8 @@
+# Pythonの警告が煩わしい場合は無効にする
+ignore_warnings: False
+
+# 設定にタグが提供されていない場合、ユーザーにタグを要求する
+enforce_tags: True
+
+# 実行開始時にRichライブラリを使用して設定ツリーを見やすく表示する
+print_config: True

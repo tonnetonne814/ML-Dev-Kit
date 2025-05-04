@@ -1,0 +1,52 @@
+# @package _global_
+
+# Optunaを使った実験のハイパーパラメータ最適化の例:
+# python train.py -m hparams_search=mnist_optuna experiment=example
+
+defaults:
+  - override /hydra/sweeper: optuna
+
+# Optunaによって最適化されるメトリックを選択
+# これがlightningモジュールでログに記録されている正しいメトリック名であることを確認してください！
+optimized_metric: "val/acc_best"
+
+# ここでOptunaハイパーパラメータ検索を定義します
+# @hydra.mainデコレータを持つ関数から返される値を最適化します
+# ドキュメント: https://hydra.cc/docs/next/plugins/optuna_sweeper
+hydra:
+  mode: "MULTIRUN" # この設定が適用された場合、デフォルトでhydraをマルチランに設定
+
+  sweeper:
+    _target_: hydra_plugins.hydra_optuna_sweeper.optuna_sweeper.OptunaSweeper
+
+    # 最適化結果を保存するためのストレージURL
+    # 例えば、'sqlite:///example.db'を設定するとSQLiteを使用できます
+    storage: null
+
+    # 最適化結果を保存するための研究名
+    study_name: null
+
+    # 並列ワーカーの数
+    n_jobs: 1
+
+    # 目的関数を'minimize'（最小化）するか'maximize'（最大化）するか
+    direction: maximize
+
+    # 実行される合計実行回数
+    n_trials: 20
+
+    # Optunaハイパーパラメータサンプラーを選択
+    # ベイジアンサンプラー（tpe）、ランダム検索（最適化なし）、グリッドサンプラーなどから選択できます
+    # ドキュメント: https://optuna.readthedocs.io/en/stable/reference/samplers.html
+    sampler:
+      _target_: optuna.samplers.TPESampler
+      seed: 1234
+      n_startup_trials: 10 # 最適化が始まる前のランダムサンプリング実行回数
+
+    # ハイパーパラメータ検索空間を定義
+    params:
+      model.optimizer.lr: interval(0.0001, 0.1)
+      data.batch_size: choice(32, 64, 128, 256)
+      model.net.lin1_size: choice(64, 128, 256)
+      model.net.lin2_size: choice(64, 128, 256)
+      model.net.lin3_size: choice(32, 64, 128, 256)

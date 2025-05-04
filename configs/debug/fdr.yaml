@@ -1,0 +1,9 @@
+# @package _global_
+
+# 1回のトレーニング、1回の検証、1回のテストステップを実行します
+
+defaults:
+  - default
+
+trainer:
+  fast_dev_run: true

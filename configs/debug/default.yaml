@@ -1,0 +1,35 @@
+# @package _global_
+
+# デフォルトのデバッグ設定、1つの完全なエポックを実行します
+# 他のデバッグ設定はこれを継承できます
+
+# デバッグログが別のフォルダに保存されるようにタスク名を上書きします
+task_name: "debug"
+
+# デバッグ中はコールバックとロガーを無効にします
+callbacks: null
+logger: null
+
+extras:
+  ignore_warnings: False
+  enforce_tags: False
+
+# すべてのコマンドラインロガーのレベルを'DEBUG'に設定します
+# https://hydra.cc/docs/tutorials/basic/running_your_app/logging/
+hydra:
+  job_logging:
+    root:
+      level: DEBUG
+
+  # hydraロガーも'DEBUG'に設定するにはこれを使用します
+  # verbose: True
+
+trainer:
+  max_epochs: 1
+  accelerator: cpu # デバッガはGPUを好みません
+  devices: 1 # デバッガはマルチプロセスを好みません
+  detect_anomaly: true # どのテンソルでもNaNや+/-infが検出された場合に例外を発生させます
+
+data:
+  num_workers: 0 # デバッガはマルチプロセスを好みません
+  pin_memory: False # GPUメモリピンを無効にします

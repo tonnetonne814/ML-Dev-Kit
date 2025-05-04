@@ -1,0 +1,15 @@
+# https://lightning.ai/docs/pytorch/stable/api/lightning.pytorch.callbacks.EarlyStopping.html
+
+early_stopping:
+  _target_: lightning.pytorch.callbacks.EarlyStopping
+  monitor: ??? # 監視する量、必ず指定する必要があります！！！
+  min_delta: 0. # 改善と見なされるための監視量の最小変化
+  patience: 3 # 改善がない状態でのチェック回数。この回数を超えるとトレーニングが停止されます
+  verbose: False # 詳細モード
+  mode: "min" # "max"はより高いメトリック値が良いことを意味し、"min"も可能
+  strict: True # 検証メトリクスで監視対象が見つからない場合にトレーニングをクラッシュさせるかどうか
+  check_finite: True # Trueに設定すると、監視対象がNaNまたは無限大になった時点でトレーニングを停止
+  stopping_threshold: null # 監視量がこのしきい値に達した時点ですぐにトレーニングを停止
+  divergence_threshold: null # 監視量がこのしきい値より悪化した時点ですぐにトレーニングを停止
+  check_on_train_epoch_end: null # トレーニングエポックの終了時に早期停止を実行するかどうか
+  # log_rank_zero_only: False  # このキーワード引数は安定版では使用できません

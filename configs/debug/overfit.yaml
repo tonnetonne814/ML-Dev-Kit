@@ -1,0 +1,13 @@
+# @package _global_
+
+# 3つのバッチにオーバーフィットします
+
+defaults:
+  - default
+
+trainer:
+  max_epochs: 20
+  overfit_batches: 3
+
+# オーバーフィッティング中はモデルチェックポイントと早期停止を無効にする必要があります
+callbacks: null

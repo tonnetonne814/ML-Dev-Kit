@@ -1,0 +1,28 @@
+# https://aimstack.io/
+
+# Lightningモジュールでの使用例：
+# https://github.com/aimhubio/aim/blob/main/examples/pytorch_lightning_track.py
+
+# 以下のコマンドでAim UIを開きます（`.aim`フォルダを含むフォルダで実行）：
+# `aim up`
+
+aim:
+  _target_: aim.pytorch_lightning.AimLogger
+  repo: ${paths.root_dir} # .aimフォルダがここに作成されます
+  # repo: "aim://ip_address:port" # 代わりにAimリモート追跡サーバーを指すIPアドレスを提供することもできます（リポジトリを管理）、詳細は https://aimstack.readthedocs.io/en/latest/using/remote_tracking.html# を参照
+
+  # aimはラン（実行）を実験名でグループ化することができます
+  experiment: null # 任意の文字列、指定されない場合は"default"に設定されます
+
+  train_metric_prefix: "train/"
+  val_metric_prefix: "val/"
+  test_metric_prefix: "test/"
+
+  # システム使用状況メトリクス（CPU、GPU、メモリなど）の追跡間隔を秒単位で設定します
+  system_tracking_interval: 10 # システムメトリクスの追跡を無効にするにはnullに設定
+
+  # インストールされたパッケージ、Git情報、環境変数などのシステムパラメータのログ記録を有効/無効にします
+  log_system_params: true
+
+  # コンソールログの追跡を有効/無効にします（デフォルト値はtrue）
+  capture_terminal_logs: false # 無限コンソールログループの問題を避けるためにfalseに設定 https://github.com/aimhubio/aim/issues/2550

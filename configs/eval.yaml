@@ -1,0 +1,18 @@
+# @package _global_
+
+defaults:
+  - _self_
+  - data: mnist # 評価用の`test_dataloader()`を持つデータモジュールを選択
+  - model: mnist
+  - logger: null
+  - trainer: default
+  - paths: default
+  - extras: default
+  - hydra: default
+
+task_name: "eval"
+
+tags: ["dev"]
+
+# 評価にはチェックポイントパスの指定が必要
+ckpt_path: ???

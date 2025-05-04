@@ -1,0 +1,12 @@
+# @package _global_
+
+# トレーニングデータの1%のみと検証/テストデータの5%のみを使用します
+
+defaults:
+  - default
+
+trainer:
+  max_epochs: 3
+  limit_train_batches: 0.01
+  limit_val_batches: 0.05
+  limit_test_batches: 0.05

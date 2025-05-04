@@ -1,0 +1,174 @@
+# バイトコンパイル／最適化／DLL ファイル
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C 拡張モジュール
+*.so
+
+# 配布／パッケージング関連
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller 生成物
+#   これらのファイルは通常、ビルド前にテンプレートから Python スクリプトで
+#   生成され、日付などの情報を埋め込むために使用されます。
+*.manifest
+*.spec
+
+# インストーラのログ
+pip-log.txt
+pip-delete-this-directory.txt
+
+# ユニットテスト／カバレッジレポート
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# 翻訳ファイル
+*.mo
+*.pot
+
+# Django 関連:
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Flask 関連:
+instance/
+.webassets-cache
+
+# Scrapy 関連:
+.scrapy
+
+# Sphinx ドキュメント
+docs/_build/
+
+# PyBuilder
+.pybuilder/
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+#   ライブラリ／パッケージの場合は複数環境で動かすことを想定するため、
+#   通常これらのファイルは無視します。ただし単一環境で動かすプロジェクト
+#   であればコミットすることもあります。
+# .python-version
+
+# pipenv
+#   pypa/pipenv#598 によると Pipfile.lock をバージョン管理に含めることが推奨
+#   されています。ただしプラットフォーム固有の依存がある場合や
+#   クロスプラットフォーム対応していない依存がある場合、環境によっては
+#   うまく動作しないことがあります。
+#Pipfile.lock
+
+# UV
+#   Pipfile.lock と同様、uv.lock も一般にはバージョン管理に含めることが
+#   推奨されます。特にバイナリパッケージの再現性確保のため推奨されますが、
+#   ライブラリでは無視されることもあります。
+uv.lock
+
+# poetry
+#   poetry.lock も再現性確保の観点からコミットが推奨されますが、
+#   ライブラリの場合は無視することもあります。
+#   https://python-poetry.org/docs/basic-usage/#commit-your-poetrylock-file-to-version-control
+#poetry.lock
+
+# pdm
+#   pdm.lock も同様にコミットが推奨されます。
+#pdm.lock
+#   pdm はプロジェクト全体の設定を .pdm.toml に保存しますが、
+#   これはバージョン管理に含めないことが推奨されています。
+#   https://pdm.fming.dev/latest/usage/project/#working-with-version-control
+.pdm.toml
+.pdm-python
+.pdm-build/
+
+# PEP 582（例: github.com/David-OConnor/pyflow, github.com/pdm-project/pdm）
+__pypackages__/
+
+# Celery 関連
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath 解析ファイル
+*.sage.py
+
+# 仮想環境
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Spyder プロジェクト設定
+.spyderproject
+.spyproject
+
+# Rope プロジェクト設定
+.ropeproject
+
+# mkdocs ドキュメント
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre 型チェッカー
+.pyre/
+
+# pytype 静的型解析
+.pytype/
+
+# Cython デバッグシンボル
+cython_debug/
+
+# PyCharm
+#  JetBrains 専用テンプレートは別ファイル JetBrains.gitignore にあります:
+#  https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore
+#  を参照して global gitignore に追加するか、ここへマージしてください。
+#  （非推奨ですが核オプションとして .idea/ を丸ごと無視することもできます）
+#.idea/
+
+# Ruff 関連:
+.ruff_cache/
+
+# PyPI 設定ファイル
+.pypirc

@@ -1,0 +1,7 @@
+defaults:
+  - default
+
+# DDPをCPUでシミュレートする。これはデバッグに役に立つ。
+accelerator: cpu
+devices: 2
+strategy: ddp_spawn

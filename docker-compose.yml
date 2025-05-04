@@ -1,0 +1,19 @@
+services:
+  dev:
+    build: .                    # 現フォルダのDockerfile
+    image: ml-dev-kit:1.0       # イメージ名指定
+    container_name: mldev       # コンテナ名指定
+    tty: True                   # コンテナが正常終了するのを防ぐ
+    network_mode: host          # ホストOSのネットに接続
+    command: "/bin/bash"        # コンテナ作成時に打たれるコマンド(ENTRYPOINT)
+    volumes:                    # マウントするフォルダ(host:container)
+      - .:/home/ubuntu/project  # 現フォルダをコンテナにマウント
+      # - /mnt/c/path/to/mount/directory:/home/ubuntu/project # Docker on WSL用
+    # GPU無マシンなら以下を全てコメントアウト
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
