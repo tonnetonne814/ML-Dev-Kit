@@ -49,8 +49,12 @@ source .venv/bin/activate # [Ubuntu/WSL]  venv有効化
 ## VSCode\Cursorの拡張機能の追加
 CursorとVSCode両方入っている場合は、どちらかを選択してください。
 ```
-bash .devcontainer/install_editor_extention.sh  # [Ubuntu/WSL]
-.devcontainer/install_editor_extention.bat      # [Windows]
+# [Ubuntu/WSL]
+dos2unix .devcontainer/install_editor_extention.sh
+bash .devcontainer/install_editor_extention.sh
+
+# [Windows]
+.devcontainer/install_editor_extention.bat
 ```
 追加されるExtensionは以下です。
 ```
