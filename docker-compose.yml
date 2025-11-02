@@ -1,6 +1,7 @@
 services:
   dev:
     build: .                    # 現フォルダのDockerfile
+    shm_size: "32g"             # 共有メモリ32GB
     image: ml-dev-kit:1.0       # イメージ名指定
     container_name: mldev       # コンテナ名指定
     tty: True                   # コンテナが正常終了するのを防ぐ
