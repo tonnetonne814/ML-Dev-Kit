@@ -10,6 +10,7 @@ WORKDIR /home/ubuntu/project
 # Ubuntu用のライブラリインストール
 RUN apt update && apt install -y gcc \
                                  cmake \
+                                 ffmpeg \
                                  libsndfile1 \
                                  dos2unix
 RUN apt-get update -y \
