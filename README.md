@@ -86,6 +86,11 @@ uv install 3.xx.yy           # Python 3.xx.yy をインストール
 uv use 3.xx.yy               # プロジェクトで使用する Python バージョンを 3.xx.yy に切り替え
 ```
 
+## cuda周りのチェック
+```python
+python tests\check_cuda.py
+```
+
 ## 学習処理 / 評価処理 の開始
 ```
 python src/train.py # 学習
