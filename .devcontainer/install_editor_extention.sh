@@ -8,7 +8,6 @@ extensions=(
   ms-python.vscode-pylance        # python基本拡張機能
   ms-python.debugpy               # python基本拡張機能
   ms-python.black-formatter       # python基本拡張機能
-  saoudrizwan.claude-dev          # AI コード生成
   usernamehw.errorlens            # エラー可視化
   ms-pyright.pyright              # Pythonコード向け静的型チェッカー
   charliermarsh.ruff              # コードの品質保持
@@ -19,38 +18,52 @@ extensions=(
   gruntfuggly.todo-tree           # TODO管理
   aaron-bond.better-comments      # コメントの着色
   njpwerner.autodocstring         # docstring テンプレートを生成
-  GitHub.copilot  # Copilot拡張
-  GitHub.copilot-chat # Copilot拡張
 )
 
 # === 2. Check which CLI binaries are available ===============================
 has_cursor=false; command -v cursor &>/dev/null && has_cursor=true
 has_code=false;   command -v code   &>/dev/null && has_code=true
+has_antigravity=false; command -v antigravity &>/dev/null && has_antigravity=true
 
-if ! $has_cursor && ! $has_code; then
+if ! $has_cursor && ! $has_code && ! $has_antigravity; then
   cat >&2 <<'EOF'
-❌  Neither 'cursor' nor 'code' is in your PATH.
+❌  Neither 'cursor', 'code', nor 'antigravity' is in your PATH.
     • Cursor: Preferences → Misc → “Install ‘cursor’ command in PATH”
     • VS Code: Command Palette → “Shell Command: Install ‘code’ command in PATH”
+    • Antigravity: Ensure the 'antigravity' command is available in your PATH.
 EOF
   exit 1
 fi
 
 # === 3. Decide which CLI to use (interactive if both exist) ==================
 if [ -z "${CLI:-}" ]; then          # respect pre‑set $CLI in CI environments
-  if $has_cursor && $has_code; then
-    echo "Both Cursor and VS Code detected. Choose which CLI to use:"
-    select choice in "Cursor (cursor)" "VS Code (code)"; do
-      case $REPLY in
-        1) CLI=cursor; break ;;
-        2) CLI=code;   break ;;
-        *) echo "Invalid selection — please choose 1 or 2." ;;
+  # Count available editors
+  count=0
+  $has_cursor && ((count++))
+  $has_code && ((count++))
+  $has_antigravity && ((count++))
+
+  if [ "$count" -gt 1 ]; then
+    echo "Multiple editors detected. Choose which CLI to use:"
+    options=()
+    $has_cursor && options+=("Cursor (cursor)")
+    $has_code && options+=("VS Code (code)")
+    $has_antigravity && options+=("Antigravity (antigravity)")
+    
+    select choice in "${options[@]}"; do
+      case $choice in
+        "Cursor (cursor)") CLI=cursor; break ;;
+        "VS Code (code)") CLI=code; break ;;
+        "Antigravity (antigravity)") CLI=antigravity; break ;;
+        *) echo "Invalid selection." ;;
       esac
     done
   elif $has_cursor; then
     CLI=cursor
-  else
+  elif $has_code; then
     CLI=code
+  elif $has_antigravity; then
+    CLI=antigravity
   fi
 fi
 echo "▶  Target CLI: $CLI"
