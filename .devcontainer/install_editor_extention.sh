@@ -4,20 +4,24 @@ set -euo pipefail
 # === 1. List of extensions to install ========================================
 extensions=(
   # --- Code‑assist / productivity -------------------------------------------
-  ms-python.python                # python基本拡張機能
-  ms-python.vscode-pylance        # python基本拡張機能
-  ms-python.debugpy               # python基本拡張機能
-  ms-python.black-formatter       # python基本拡張機能
-  usernamehw.errorlens            # エラー可視化
-  ms-pyright.pyright              # Pythonコード向け静的型チェッカー
-  charliermarsh.ruff              # コードの品質保持
-  shardulm94.trailing-spaces      # 無駄なスペースの可視化
-  mhutchie.git-graph              # gitコミットの可視化
-  mosapride.zenkaku               # 全角スペースの可視化
-  kevinrose.vsc-python-indent     # インデント自動調整
-  gruntfuggly.todo-tree           # TODO管理
-  aaron-bond.better-comments      # コメントの着色
-  njpwerner.autodocstring         # docstring テンプレートを生成
+  ms-python.python                    # Python基本拡張機能
+  ms-python.vscode-pylance            # Python基本拡張機能
+  ms-python.debugpy                   # Python基本拡張機能
+  ms-python.black-formatter           # Python基本拡張機能
+  ms-azuretools.vscode-docker         # Docker基本拡張機能
+  ms-vscode-remote.remote-containers  # Docker基本拡張機能
+  ms-vscode-remote.remote-ssh         # remote基本拡張機能
+  ms-vscode.remote-server             # remote基本拡張機能
+  usernamehw.errorlens                # エラー可視化
+  ms-pyright.pyright                  # Pythonコード向け静的型チェッカー
+  charliermarsh.ruff                  # コードの品質保持
+  shardulm94.trailing-spaces          # 無駄なスペースの可視化
+  mhutchie.git-graph                  # gitコミットの可視化
+  mosapride.zenkaku                   # 全角スペースの可視化
+  kevinrose.vsc-python-indent         # インデント自動調整
+  gruntfuggly.todo-tree               # TODO管理
+  aaron-bond.better-comments          # コメントの着色
+  njpwerner.autodocstring             # docstring テンプレートを生成
 )
 
 # === 2. Check which CLI binaries are available ===============================
@@ -68,6 +72,37 @@ if [ -z "${CLI:-}" ]; then          # respect pre‑set $CLI in CI environments
 fi
 echo "▶  Target CLI: $CLI"
 echo
+
+if [ "$CLI" = "antigravity" ]; then
+  echo "⚙️  Configuring Antigravity Marketplace..."
+  SETTINGS_DIR="$HOME/.config/antigravity/User"
+  mkdir -p "$SETTINGS_DIR"
+  SETTINGS_FILE="$SETTINGS_DIR/settings.json"
+
+  python3 -c "
+import json
+import os
+
+settings_file = '$SETTINGS_FILE'
+data = {}
+
+if os.path.exists(settings_file):
+    try:
+        with open(settings_file, 'r') as f:
+            data = json.load(f)
+    except json.JSONDecodeError:
+        pass
+
+if 'extensionsGallery' not in data:
+    data['extensionsGallery'] = {}
+
+data['extensionsGallery']['serviceUrl'] = 'https://marketplace.visualstudio.com/_apis/public/gallery'
+data['extensionsGallery']['itemUrl'] = 'https://marketplace.visualstudio.com/items'
+
+with open(settings_file, 'w') as f:
+    json.dump(data, f, indent=4)
+"
+fi
 
 # === 4. Install extensions (skip those already present) ======================
 for ext in "${extensions[@]}"; do

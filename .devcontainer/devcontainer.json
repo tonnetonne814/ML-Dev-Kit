@@ -4,23 +4,22 @@
 	"service": "../",
 	"workspaceFolder": "/home/ubuntu/project",
 	"customizations": {
-	  	"vscode": {
+		"vscode": {
 			"extensions": [
-		  		"ms-python.python",
-		  		"ms-python.vscode-pylance",
-		  		"ms-python.debugpy",
-		  		"ms-python.black-formatter",
-		  		"saoudrizwan.claude-dev",
-		  		"usernamehw.errorlens",
-		  		"charliermarsh.ruff",
-		  		"shardulm94.trailing-spaces",
-		  		"mhutchie.git-graph",
-		  		"mosapride.zenkaku",
-		  		"kevinrose.vsc-python-indent",
-		  		"gruntfuggly.todo-tree",
-		  		"aaron-bond.better-comments",
-		  		"njpwerner.autodocstring"
+				"ms-python.python",
+				"ms-python.vscode-pylance",
+				"ms-python.debugpy",
+				"ms-python.black-formatter",
+				"usernamehw.errorlens",
+				"charliermarsh.ruff",
+				"shardulm94.trailing-spaces",
+				"mhutchie.git-graph",
+				"mosapride.zenkaku",
+				"kevinrose.vsc-python-indent",
+				"gruntfuggly.todo-tree",
+				"aaron-bond.better-comments",
+				"njpwerner.autodocstring"
 			]
-	  	}
+		}
 	}
 }

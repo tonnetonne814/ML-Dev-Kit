@@ -49,12 +49,28 @@ if "%COUNT%"=="1" (
 
 echo Target CLI: !CLI!
 
+if "!CLI!"=="antigravity" (
+    echo Configuring Antigravity Marketplace...
+    set "SETTINGS_DIR=%APPDATA%\antigravity\User"
+    if not exist "!SETTINGS_DIR!" mkdir "!SETTINGS_DIR!"
+    set "SETTINGS_FILE=!SETTINGS_DIR!\settings.json"
+    
+    powershell -Command ^
+        "$path = '!SETTINGS_FILE!';" ^
+        "if (Test-Path $path) { $json = Get-Content $path -Raw | ConvertFrom-Json } else { $json = @{} };" ^
+        "if (-not $json.extensionsGallery) { $json | Add-Member -MemberType NoteProperty -Name 'extensionsGallery' -Value @{} };" ^
+        "$json.extensionsGallery | Add-Member -MemberType NoteProperty -Name 'serviceUrl' -Value 'https://marketplace.visualstudio.com/_apis/public/gallery' -Force;" ^
+        "$json.extensionsGallery | Add-Member -MemberType NoteProperty -Name 'itemUrl' -Value 'https://marketplace.visualstudio.com/items' -Force;" ^
+        "$json | ConvertTo-Json -Depth 10 | Set-Content $path"
+)
+
 rem -- List of extensions ----------------------------------------
 for %%E in (
     ms-python.python
     ms-python.vscode-pylance
     ms-python.debugpy
     ms-python.black-formatter
+    ms-azuretools.vscode-docker
     usernamehw.errorlens
     ms-pyright.pyright
     charliermarsh.ruff
