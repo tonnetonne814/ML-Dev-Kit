@@ -81,7 +81,7 @@ def train(cfg: DictConfig) -> Tuple[Dict[str, Any], Dict[str, Any]]:
 
     if cfg.get("train"):
         log.info("トレーニングを開始します！")
-        trainer.fit(model=model, datamodule=datamodule, ckpt_path=cfg.get("ckpt_path"))
+        trainer.fit(model=model, datamodule=datamodule, ckpt_path=cfg.get("ckpt_path"), weights_only=False)
 
     train_metrics = trainer.callback_metrics
 
@@ -91,7 +91,7 @@ def train(cfg: DictConfig) -> Tuple[Dict[str, Any], Dict[str, Any]]:
         if ckpt_path == "":
             log.warning("最良のチェックポイントが見つかりませんでした！テスト用に現在の重みを使用します...")
             ckpt_path = None
-        trainer.test(model=model, datamodule=datamodule, ckpt_path=ckpt_path)
+        trainer.test(model=model, datamodule=datamodule, ckpt_path=ckpt_path, weights_only=False)
         log.info(f"最良のチェックポイントパス: {ckpt_path}")
 
     test_metrics = trainer.callback_metrics

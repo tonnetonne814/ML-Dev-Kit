@@ -2,5 +2,5 @@ _target_: src.data.mnist_datamodule.MNISTDataModule
 data_dir: ${paths.data_dir}
 batch_size: 128 # デバイス数で割り切れる必要があります（例：分散設定の場合）
 train_val_test_split: [55_000, 5_000, 10_000]
-num_workers: 0
+num_workers: 8
 pin_memory: False
