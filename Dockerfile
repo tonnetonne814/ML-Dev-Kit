@@ -32,7 +32,8 @@ RUN apt-get update -y \
         xz-utils \
         tk-dev \
         libffi-dev \
-        liblzma-dev
+        liblzma-dev \
+        git-lfs
 
 ### anaconda ### ref:https://www.eureka-moments-blog.com/entry/2020/02/22/160931#3-AnacondaPython37%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB
 # RUN set -x && \
